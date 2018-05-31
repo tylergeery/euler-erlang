@@ -1,6 +1,6 @@
 -module(three).
 
--export([largest_prime_factor/1]).
+-export([largest_prime_factor/1, is_prime/1]).
 
 get_factor(F, N) when N > F ->
     case trunc(N) rem F of

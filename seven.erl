@@ -2,13 +2,8 @@
 -export([nth_prime/1]).
 
 nth_prime(N) ->
-    case code:load_file(three) of
-        {error, _} ->
-            code:purge(three),
-            nth_prime(N);
-        {module, three} -> nth_prime(1, 1, N)
-    end.
-nth_prime(Iter, Current, Limit) when Current < Limit ->
+    nth_prime(1, 1, N).
+nth_prime(Iter, Current, Limit) when Limit >= Current ->
     case three:is_prime(Iter) of
         true ->
             case Current == Limit of
