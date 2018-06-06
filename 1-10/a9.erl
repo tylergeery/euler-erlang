@@ -3,12 +3,10 @@
 
 product_py_triplet(N) when N > 0 ->
     {A, B, C} = py_triplet(N, 1, 2, N-3),
-    io:format("Winner: ~p,~p,~p~n", [A, B, C]),
     A * B * C.
 
 validate(N, A, B, C) ->
     P = A + B + C,
-    io:format("Validate: A: ~p, B: ~p, C: ~p~n", [A,B,C]),
     case P == N of
         true -> (A*A + B*B) == (C*C);
         false -> false
