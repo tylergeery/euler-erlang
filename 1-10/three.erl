@@ -12,12 +12,14 @@ get_factor(F, N) when N > F ->
 get_factor(_, _) ->
     [].
 
-is_prime(1) ->
+is_prime(N) when N < 4 ->
     true;
 is_prime(N) ->
-    case largest_prime_factor(N) of
-        1 -> true;
-        _Else -> false
+    N1 = trunc(N),
+    if
+        (N1 rem 2) == 0 -> false;
+        (N1 rem 3) == 0 -> false;
+        true -> largest_prime_factor(N) =:= 1
     end.
 
 largest_prime_factor(N) when N > 0 ->
