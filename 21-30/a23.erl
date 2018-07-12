@@ -15,18 +15,18 @@ is_sum_abundant(N, Sum_Abundant) ->
             fun(Val) -> Val == N end,
             Sum_Abundant
         )
-    ) > 1.
+    ) == 0.
 
 get_abundant() ->
-    Tuples = [{X, is_abundant(X)} || X <- lists:seq(1, 28123)],
-    Abundant = filter_abundant(Tuples),
-    Sum_Abundant = lists:sort([X+Y || X <- Abundant,
+    Abundant = filter_abundant([{X, is_abundant(X)} || X <- lists:seq(1, 28123)]),
+    Sum_Abundant = lists:usort([X+Y || X <- Abundant,
             Y <- Abundant,
-            X >= Y]),
-    lists:filter(
+            X >= Y,
+            X+Y < 28124]),
+    lists:sum(lists:filter(
         fun(Val) -> is_sum_abundant(Val, Sum_Abundant) end,
         [X || X <- lists:seq(1, 28123)]
-    ).
+    )).
 
 
 divisors(Value) -> divisors(Value, trunc(math:sqrt(Value)), []).
